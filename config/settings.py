@@ -14,7 +14,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    'catalog',
+]
 
 THIRD_PARTY_APPS = [
     'rest_framework',
