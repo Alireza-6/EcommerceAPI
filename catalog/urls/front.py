@@ -1,6 +1,6 @@
 from rest_framework.routers import SimpleRouter
 
-from catalog.api.views import CategoryView
+from catalog.views.front import CategoryView
 
 router = SimpleRouter()
 router.register("categories", CategoryView)

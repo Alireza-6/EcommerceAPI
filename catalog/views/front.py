@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from catalog.api.serializers import CategoryListSerializer
 from catalog.models import Category
+from catalog.serializers.front import CategoryListSerializer
 
 
 class CategoryView(viewsets.ReadOnlyModelViewSet):
