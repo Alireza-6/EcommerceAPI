@@ -22,11 +22,11 @@ class CategoryNodeCreateSerializer(serializers.ModelSerializer):
         fields = ["id", "title", "description", "is_public", "slug", "parent"]
 
 
-class CategoryTreeSerializer(serializers.ModelSerializer):
+class CategoryTreeListSerializer(serializers.ModelSerializer):
     children = serializers.SerializerMethodField()
 
     def get_children(self, obj):
-        res = CategoryTreeSerializer(obj.get_children(), many=True).data
+        res = CategoryTreeListSerializer(obj.get_children(), many=True).data
         return res
 
     class Meta:
@@ -34,6 +34,13 @@ class CategoryTreeSerializer(serializers.ModelSerializer):
         fields = ["id", "title", "description", "is_public", "slug", "children"]
 
 
-CategoryTreeSerializer.get_children = extend_schema_field(serializers.ListField(child=CategoryTreeSerializer()))(
-    CategoryTreeSerializer.get_children
+CategoryTreeListSerializer.get_children = extend_schema_field(
+    serializers.ListField(child=CategoryTreeListSerializer()))(
+    CategoryTreeListSerializer.get_children
 )
+
+
+class CategoryNodeRetrieveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = "__all__"
