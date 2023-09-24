@@ -1,7 +1,7 @@
 from django.db import models
 from treebeard.mp_tree import MP_Node
 
-from catalog.managers import CategoryManager
+from catalog.managers import CategoryQuerySet
 
 
 class Category(MP_Node):
@@ -10,7 +10,7 @@ class Category(MP_Node):
     slug = models.SlugField()
     is_public = models.BooleanField(default=True)
 
-    objects = CategoryManager.as_manager()
+    objects = CategoryQuerySet.as_manager()
 
     class Meta:
         verbose_name = "Category"
