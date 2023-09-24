@@ -6,6 +6,7 @@ from catalog.serializers.admin import (
     CategoryNodeCreateSerializer,
     CategoryTreeListSerializer,
     CategoryNodeRetrieveSerializer,
+    CategoryNodeUpdateDeleteSerializer,
 )
 
 
@@ -24,5 +25,11 @@ class CategoryView(viewsets.ModelViewSet):
                 return CategoryNodeCreateSerializer
             case 'retrieve':
                 return CategoryNodeRetrieveSerializer
+            case 'update':
+                return CategoryNodeUpdateDeleteSerializer
+            case 'partial_update':
+                return CategoryNodeUpdateDeleteSerializer
+            case 'destroy':
+                return CategoryNodeUpdateDeleteSerializer
             case _:
                 raise NotAcceptable()

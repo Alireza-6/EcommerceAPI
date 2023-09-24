@@ -44,3 +44,9 @@ class CategoryNodeRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = "__all__"
+
+
+class CategoryNodeUpdateDeleteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ["id", "title", "description", "is_public"]
