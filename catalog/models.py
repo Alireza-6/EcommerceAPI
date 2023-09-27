@@ -49,11 +49,12 @@ class ProductClass(models.Model):
     slug = models.SlugField(unique=True, allow_unicode=True)
     track_stock = models.BooleanField(default=True)
     require_shipping = models.BooleanField(default=True)
-    options = models.ManyToManyField('Option')
+    options = models.ManyToManyField('Option', blank=True)
 
     def __str__(self):
         return self.title
 
+    @property
     def has_attribute(self):
         return self.attributes.exists()
 
