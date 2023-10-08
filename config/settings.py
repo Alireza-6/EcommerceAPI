@@ -18,6 +18,7 @@ LOCAL_APPS = [
     'catalog',
     'gallery',
     'analytics',
+    'inventory',
 ]
 
 THIRD_PARTY_APPS = [

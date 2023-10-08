@@ -11,6 +11,9 @@ from catalog.models import (
     ProductClass,
     ProductAttribute,
     ProductRecommendation,
+    Product,
+    ProductAttributeValue,
+    ProductImage,
 )
 
 
@@ -22,12 +25,6 @@ class CategoryAdmin(TreeAdmin):
 class ProductAttributeInLine(admin.TabularInline):
     model = ProductAttribute
     extra = 2
-
-
-class ProductRecommendationInLine(admin.TabularInline):
-    model = ProductRecommendation
-    extra = 2
-    fk_name = 'primary'
 
 
 class AttributeCountFilter(admin.SimpleListFilter):
@@ -60,6 +57,29 @@ class ProductClassAdmin(admin.ModelAdmin):
 
     def enable_track_stock(self, request, queryset):
         queryset.update(track_stock=True)
+
+
+class ProductRecommendationInLine(admin.StackedInline):
+    model = ProductRecommendation
+    extra = 2
+    fk_name = 'primary'
+
+
+class ProductAttributeValueInLine(admin.TabularInline):
+    model = ProductAttributeValue
+    extra = 2
+
+
+class ProductImageInLine(admin.TabularInline):
+    model = ProductImage
+    extra = 2
+
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ['title', 'slug']
+    inlines = [ProductAttributeValueInLine, ProductImageInLine, ProductRecommendationInLine]
+    prepopulated_fields = {'slug': ('title',)}
 
 
 admin.site.register(Option)
