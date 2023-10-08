@@ -10,6 +10,7 @@ from catalog.models import (
     OptionGroupValue,
     ProductClass,
     ProductAttribute,
+    ProductRecommendation,
 )
 
 
@@ -21,6 +22,12 @@ class CategoryAdmin(TreeAdmin):
 class ProductAttributeInLine(admin.TabularInline):
     model = ProductAttribute
     extra = 2
+
+
+class ProductRecommendationInLine(admin.TabularInline):
+    model = ProductRecommendation
+    extra = 2
+    fk_name = 'primary'
 
 
 class AttributeCountFilter(admin.SimpleListFilter):
