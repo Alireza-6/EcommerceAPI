@@ -15,10 +15,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 LOCAL_APPS = [
-    'catalog',
-    'gallery',
-    'analytics',
-    'inventory',
+    'catalog.apps.CatalogConfig',
+    'gallery.apps.GalleryConfig',
+    'analytics.apps.AnalyticsConfig',
+    'inventory.apps.InventoryConfig',
+    'authentication.apps.AuthenticationConfig',
 ]
 
 THIRD_PARTY_APPS = [
@@ -54,6 +55,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "config.urls"
+
+AUTH_USER_MODEL = "authentication.User"
 
 TEMPLATES = [
     {
