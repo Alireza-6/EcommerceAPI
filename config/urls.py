@@ -6,6 +6,7 @@ from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 
 admin_urls = [
+    path("admin/users/", include(('authentication.urls.admin', 'authentication'), namespace='authentication-admin')),
     path("admin/catalog/", include(('catalog.urls.admin', 'catalog'), namespace='catalog-admin')),
 ]
 
